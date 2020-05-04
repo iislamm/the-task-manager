@@ -133,7 +133,6 @@ class CreateTask extends React.Component {
 }
 
 const mapStateToProps = state => {
-    console.log(state);
     return {
         error: state.tasks.create.error,
         success: state.tasks.create.success,

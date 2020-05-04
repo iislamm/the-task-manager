@@ -15,7 +15,6 @@ export const createTask = data => {
                         creatorId: user.uid,
                         creatorEmail: user.email
                     }).then(docSnapshot => {
-                        console.log(docSnapshot);
                         dispatch({ type: 'TASK_CREATE_SUCCESS' })
                     })
                 }).catch(error => dispatch({ type: 'TASK_CREATE_FAIL', error }));

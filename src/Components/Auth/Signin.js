@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { withStyles } from '@material-ui/core/styles';
 import { singIn, redirectAuthorized } from '../../store/actions/authActions';
 import { connect } from 'react-redux';
-import { Paper, Typography, TextField, Container, Button, Snackbar, SnackbarContent } from '@material-ui/core';
+import { Paper, Typography, TextField, Container, Button } from '@material-ui/core';
 import { showError } from '../../store/actions/globalActions';
 
 const styles = theme => ({

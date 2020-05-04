@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles';
-import { Paper, Typography, TextField, Container, Button, Snackbar, SnackbarContent } from '@material-ui/core';
+import { Paper, Typography, TextField, Container, Button } from '@material-ui/core';
 import { signUp, redirectAuthorized } from '../../store/actions/authActions';
 import { showError } from '../../store/actions/globalActions';
 

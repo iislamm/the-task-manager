@@ -1,4 +1,4 @@
-const listsReducer = (state = { createDialog: false }, action) => {
+const listsReducer = (state = { createDialog: false, currentList: 0 }, action) => {
   switch(action.type) {
     case 'LIST_CREATE_SUCCESS':
       console.log('LIST_CREATE_SUCCESS');
@@ -23,6 +23,11 @@ const listsReducer = (state = { createDialog: false }, action) => {
       return {
         ...state,
         createDialog: false
+      }
+    case 'UPDATE_CURRENT_LIST':
+      return {
+        ...state,
+        currentList: action.value
       }
     default:
       return {

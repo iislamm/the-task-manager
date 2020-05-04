@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link as RouterLink } from 'react-router-dom';
-import { Button, Menu, withStyles, MenuItem, ListItemIcon, ListItemText, List, ListItem } from '@material-ui/core';
-import { Menu as MenuIcon, ExitToApp } from '@material-ui/icons';
+import { Button, withStyles, ListItemText, List, ListItem } from '@material-ui/core';
+import { ExitToApp } from '@material-ui/icons';
 import { signOut } from '../../store/actions/authActions';
-import { loggedInLinks, getLoggedInLinks } from './links';
+import { getLoggedInLinks } from './links';
 
 
 const styles = theme => ({

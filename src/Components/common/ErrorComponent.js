@@ -1,5 +1,5 @@
 import React from 'react'
-import { Snackbar, SnackbarContent, makeStyles } from '@material-ui/core';
+import { Snackbar, SnackbarContent } from '@material-ui/core';
 import { ErrorStyles } from '../../styles/feedBackStyles';
 import { withStyles } from '@material-ui/styles';
 

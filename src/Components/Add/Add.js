@@ -1,9 +1,7 @@
 import React from 'react';
-import { Container, Grid, Fab, withStyles, Paper, Typography, Button, Menu, MenuItem } from '@material-ui/core';
+import { Fab, withStyles } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { openCreateTaskDialog, closeCreateTaskDialog } from '../../store/actions/tasksActions';
 import { openListCreateDialog } from '../../store/actions/listsActions';
 const styles = theme => ({
   root: {
@@ -16,13 +14,10 @@ const styles = theme => ({
 class Add extends React.Component {
   state = {
     open: false,
-    anchorEl: null
   }
 
   handleClick = e => {
-    // this.setState({ open: !this.state.open, anchorEl: e.currentTarget });
-    this.props.openCreateTaskDialog();
-
+    this.props.openCreateListDialog();
   }
 
   handleClose = () => {
@@ -43,23 +38,11 @@ class Add extends React.Component {
     const { classes } = this.props;
     return (
       <div className={classes.root}>
-        <Menu
-          id="add-menu"
-          open={this.state.open}
-          anchorEl={this.state.anchorEl}
-          anchorOrigin={{vertical: 'top', horizontal: 'left'}}
-          className={classes.menu}
-          color="primary"
-          onClose={this.handleClose}>
-            <MenuItem onClick={this.openCreateList}>Create list</MenuItem>
-            <MenuItem onClick={this.openCreateTask} >Create task</MenuItem>
-          </Menu>
         <Fab
             color="primary"
             aria-label='add'
-            className={classes.fab}
             onClick={this.handleClick}
-            title="Add task">
+            title="Add list">
             <AddIcon fontWeight='bold' />
         </Fab>
       </div>
@@ -75,8 +58,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    openCreateTaskDialog: () => dispatch(openCreateTaskDialog()),
-    // openCreateListDialog: () => dispatch(openListCreateDialog())
+    openCreateListDialog: () => dispatch(openListCreateDialog())
   }
 }
 
