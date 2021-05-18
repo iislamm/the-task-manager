@@ -1,13 +1,14 @@
+import { makeStyles } from '@material-ui/core';
 import { green } from '@material-ui/core/colors';
 
-export const ErrorStyles = theme => ({
+export const useErrorStyles = makeStyles(theme => ({
   errorSnackbar: {
     backgroundColor: theme.palette.error.dark,
-  }
-});
+  },
+}));
 
-export const SuccessStyles = theme => ({
+export const useSuccessStyles = makeStyles(theme => ({
   successSnackbar: {
-    backgroundColor: green[600]
-  }
-})
+    backgroundColor: green[600],
+  },
+}));
