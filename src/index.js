@@ -11,12 +11,6 @@ import { getFirebase, ReactReduxFirebaseProvider } from 'react-redux-firebase';
 import firebaseConfig from './config/firebaseConfig';
 import AuthIsLoaded from './Components/Auth/AuthIsLoaded';
 
-const rfConfig = {
-  userProfile: 'users',
-  useFirestoreForProfile: true,
-  attachAuthIsReady: true,
-};
-
 const store = createStore(
   rootReducer,
   compose(
@@ -29,20 +23,27 @@ const store = createStore(
   )
 );
 
-store.firebaseAuthIsReady.then(() => {
-  ReactDOM.render(
-    <Provider store={store}>
-      <ReactReduxFirebaseProvider
-        firebase={firebaseConfig}
-        config={rfConfig}
-        dispatch={store.dispatch}
-        createFirestoreInstance={createFirestoreInstance}
-      ></ReactReduxFirebaseProvider>
-      <AuthIsLoaded>
-        <App />
-      </AuthIsLoaded>
-    </Provider>,
-    document.getElementById('root')
-  );
-  serviceWorker.unregister();
-});
+const rfConfig = {
+  // userProfile: 'users',
+  // useFirestoreForProfile: true,
+};
+
+console.log(firebaseConfig);
+
+const rrfProps = {
+  firebase: firebaseConfig,
+  config: rfConfig,
+  dispatch: store.dispatch,
+  createFirestoreInstance, // <- needed if using firestore
+};
+
+ReactDOM.render(
+  <Provider store={store}>
+    <ReactReduxFirebaseProvider {...rrfProps}></ReactReduxFirebaseProvider>
+    <AuthIsLoaded>
+      <App />
+    </AuthIsLoaded>
+  </Provider>,
+  document.getElementById('root')
+);
+serviceWorker.unregister();

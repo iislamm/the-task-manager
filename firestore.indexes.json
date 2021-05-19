@@ -1,0 +1,33 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "lists",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "moderatorsIds",
+          "arrayConfig": "CONTAINS"
+        },
+        {
+          "fieldPath": "lastVisit",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "lists",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "moderatorsIds",
+          "arrayConfig": "CONTAINS"
+        },
+        {
+          "fieldPath": "lastVisit",
+          "order": "DESCENDING"
+        }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}

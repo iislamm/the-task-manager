@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFirestoreConnect } from 'react-redux-firebase';
@@ -32,6 +32,9 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import Container from '@material-ui/core/Container';
 
+import firebase from 'firebase/app';
+import 'firebase/firestore';
+
 const useStyles = makeStyles(theme => ({
   root: {
     marginBottom: theme.spacing(2),
@@ -56,8 +59,13 @@ export default function Dashboard() {
   const [currentList, setCurrentList] = useState({});
   const [currentListId, setCurrentListId] = useState('');
 
-  const auth = useSelector(state => state.firebase.auth);
+  useFirestoreConnect([{ collection: 'lists' }, { collection: 'users' }]);
+
   const lists = useSelector(state => state.firestore.ordered.lists);
+
+  const auth = useSelector(state => state.firebase.auth);
+  // const lists = useSelector(state => state.firestore.data.lists);
+  const users = useSelector(state => state.firestore);
   const listsState = useSelector(state => state.lists);
   const tasksState = useSelector(state => state.tasks);
   const taskCreateError = useSelector(state => state.tasks.create.error);
@@ -67,13 +75,16 @@ export default function Dashboard() {
 
   const dispatch = useDispatch();
 
-  useFirestoreConnect([
-    {
-      collection: 'lists',
-      where: ['moderatorsIds', 'array-contains', auth.uid ? auth.uid : ''],
-      orderBy: ['lastVisit', 'desc'],
-    },
-  ]);
+  useEffect(() => {
+    console.log(lists);
+    console.log(auth.uid);
+    console.log(users);
+    firebase
+      .firestore()
+      .collection('users')
+      .get()
+      .then(snap => console.log(snap.docs));
+  });
 
   const classes = useStyles();
 

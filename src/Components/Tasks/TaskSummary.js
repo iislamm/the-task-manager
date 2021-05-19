@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Typography } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import { updateTask } from '../../store/actions/tasksActions';

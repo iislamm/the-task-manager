@@ -2,7 +2,7 @@ import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import { onUserCreated } from './users';
 import { onTaskCreated, onTaskDeleted } from './tasks';
-import { onListCreated, onListDeleted } from './lists';
+import { onListCreated } from './lists';
 
 admin.initializeApp({
   credential: admin.credential.applicationDefault(),
@@ -16,5 +16,3 @@ exports.onTaskCreated = functions.firestore.document('tasks/{taskId}').onCreate(
 exports.onTaskDeleted = functions.firestore.document('tasks/{taskId}').onDelete(onTaskDeleted);
 
 exports.onListCreated = functions.firestore.document('lists/{listId}').onCreate(onListCreated);
-
-exports.onListDeleted = functions.firestore.document('lists/{listId}').onDelete(onListDeleted);
